@@ -46,19 +46,24 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
       action.loop = THREE.LoopOnce;
 
       // Set the time scale based on the direction
-      action.timeScale = isReversed ? -0.9 : 0.6;
+      action.timeScale = isReversed ? -1 : 1;
 
-      action.reset();
+      if (!action.isRunning()) {
+        // Reset the animation to the beginning if the animation is not running
+        action.reset();
 
-      // Set the action's time to the last frame if the animation is reversed
-      if (isReversed) action.time = action.getClip().duration;
+        // Start to play the animation from the end if the animation is reversed
+        if (isReversed) {
+          action.time = action.getClip().duration;
+        }
+      }
 
       action.play();
 
+      // Toggle reverse state and store the new last time after animation starts
       setIsReversed(!isReversed);
     }
   };
-
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Project_Name">

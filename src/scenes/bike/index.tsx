@@ -4,15 +4,19 @@ import { OrbitControls, Stage } from "@react-three/drei";
 import { Model } from "./model";
 
 export default function BikeScene() {
-  const ref = useRef(null);
+  const controlsRef = useRef(null);
+
   return (
     <Canvas
-      ref={ref}
       shadows
       dpr={[1, 2]}
       camera={{
         fov: 50,
-        position: [1, 1.5, 2],
+        position: [1, 1.9, -2],
+        near: 200,
+        far: 2000,
+        focus: 500,
+        zoom: 0.5, // das ist für das verkleinert des bildes wichtig
       }}
     >
       <Suspense fallback={null}>
@@ -20,7 +24,14 @@ export default function BikeScene() {
           <Model />
         </Stage>
       </Suspense>
-      <OrbitControls autoRotate={false} ref={ref} />
+      <OrbitControls
+        ref={controlsRef}
+        autoRotate={false}
+        minDistance={0.1}
+        maxDistance={9}
+        enableDamping={true}
+        dampingFactor={0.1}
+      />
     </Canvas>
   );
 }
