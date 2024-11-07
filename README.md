@@ -15,7 +15,7 @@ npm install
 To start the development server, run:
 
 ```bash
-npm start
+npm run dev
 ```
 
 ## License
