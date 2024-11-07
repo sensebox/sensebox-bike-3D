@@ -1,10 +1,27 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import BikeScene from './scenes/bike/bike-scene';
+
+const router = createBrowserRouter([
+  {
+    path: "bike",
+    element: (
+      <StrictMode>
+        <BikeScene />
+      </StrictMode>
+    ),
+  },
+  {
+    path: "/",
+    element: <div>
+      <h1>senseBox 3D models</h1>
+      <a href="/bike">Bike</a>
+    </div>,
+  },
+]);
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <RouterProvider router={router} />
 )
