@@ -2,10 +2,9 @@
 import { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Stage } from '@react-three/drei'
-import { Model } from './Model'
+import { Model } from './model'
 
-
-export default function App() {
+export default function BikeScene() {
   const ref = useRef(null)
   return (
     <Canvas ref={ref} shadows dpr={[1, 2]} camera={{
