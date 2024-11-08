@@ -39,6 +39,15 @@ export function ToF({ nodes, materials, ...props }: ModuleGroupProps) {
         rotation={[Math.PI / 2, 0, 0]}
         userData={{ name: "Buffer Object" }}
       />
+      <mesh
+        name="TPU_Module_-_Distanz_Sensor_ToF_V3"
+        castShadow
+        receiveShadow
+        geometry={nodes["TPU_Module_-_Distanz_Sensor_ToF_V3"].geometry}
+        material={materials["Plastic_-_Glossy_(Black)"]}
+        rotation={[Math.PI / 2, 0, 0]}
+        userData={{ name: "TPU Module - Distanz Sensor ToF V3" }}
+      />
     </group>
   );
 }

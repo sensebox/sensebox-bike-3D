@@ -32,6 +32,8 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
 
   // Verwende den Hook für die "open lid"-Animation
   const toggleLidAnimation = useToggleAnimation(actions["open lid"]);
+  const toggleTofAnimation = useToggleAnimation(actions["explode tof"]);
+  const toggleHdcAnimation = useToggleAnimation(actions["explode hdc"]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -43,9 +45,14 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
           userData={{ name: "BikeBox+Mini+S2 (1)" }}
         >
           <Mcu nodes={nodes} materials={materials} />
-          <Hdc1080 nodes={nodes} materials={materials} />
+          <group onClick={() => toggleHdcAnimation()}>
+            <Hdc1080 nodes={nodes} materials={materials} />
+            <Fan nodes={nodes} materials={materials} />
+            <FanEnclosure nodes={nodes} materials={materials} />
+          </group>
+
           <Ble nodes={nodes} materials={materials} />
-          <Fan nodes={nodes} materials={materials} />
+
           <Battery nodes={nodes} materials={materials} />
           <Lid
             nodes={nodes}
@@ -54,9 +61,12 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
           />
           <LevelBooster nodes={nodes} materials={materials} />
           <LipoMeshBoard nodes={nodes} materials={materials} />
-          <ToF nodes={nodes} materials={materials} />
+          <ToF
+            nodes={nodes}
+            materials={materials}
+            onClick={() => toggleTofAnimation()}
+          />
           <Enclosure nodes={nodes} materials={materials} />
-          <FanEnclosure nodes={nodes} materials={materials} />
         </group>
       </group>
     </group>
